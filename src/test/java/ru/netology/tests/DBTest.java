@@ -2,6 +2,7 @@ package ru.netology.tests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,6 +29,7 @@ public class DBTest {
     }
 
     @Test
+    @SneakyThrows
     public void shouldFillFormWithApprovedCardForPayment() {
         MainPage.getPaymentPage();
         var cardInfo = DataHelper.getApprovedNumberOfCard();
@@ -38,6 +40,7 @@ public class DBTest {
         assertEquals(expectedStatus, actualStatus);
     }
     @Test
+    @SneakyThrows
     public void shouldFillFormWithDeclinedCardForPayment() {
         MainPage.getPaymentPage();
         var cardInfo = DataHelper.getDeclinedNumberOfCard();
@@ -48,6 +51,7 @@ public class DBTest {
         assertEquals(expectedStatus, actualStatus);
     }
     @Test
+    @SneakyThrows
     public void shouldFillFormWithApprovedCardForCredit() {
         MainPage.getCreditPage();
         var cardInfo = DataHelper.getApprovedNumberOfCard();
@@ -59,6 +63,7 @@ public class DBTest {
     }
 
     @Test
+    @SneakyThrows
     public void shouldFillFormWithDeclinedCardForCredit() {
         MainPage.getCreditPage();
         var cardInfo = DataHelper.getDeclinedNumberOfCard();

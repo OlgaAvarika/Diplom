@@ -13,13 +13,12 @@ public class SQLHelper {
     private static QueryRunner runner = new QueryRunner();
 
     private static String url = System.getProperty("db.url");
-    private static String user = System.getProperty("db.user");
-    private static String password = System.getProperty("db.password");
     private static Connection connection;
 
+    @SneakyThrows
     public static Connection getConnect() {
         try {
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, "app", "pass");
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
@@ -49,7 +48,7 @@ public class SQLHelper {
     }
     @SneakyThrows
     public static String getApprovedStatusWhenCredit() {
-        var statusSQL = "SELECT * FROM credit_request_entity JOIN order_entity ON bank_id = credit_id where status = 'APPROVED'";
+        var statusSQL = "SELECT * FROM credit_request_entity JOIN order_entity ON bank_id = payment_id where status = 'APPROVED'";
         try (Connection connection = getConnect()) {
             var result = runner.query(connection, statusSQL, new BeanHandler<>(CreditEntity.class));
             return result.getStatus();
@@ -60,7 +59,7 @@ public class SQLHelper {
     }
     @SneakyThrows
     public static String getDeclinedStatusWhenCredit() {
-        var statusSQL = "SELECT * FROM credit_request_entity JOIN order_entity ON bank_id = credit_id where status = 'DECLINED'";
+        var statusSQL = "SELECT * FROM credit_request_entity JOIN order_entity ON bank_id = payment_id where status = 'DECLINED'";
         try (Connection connection = getConnect()) {
             var result = runner.query(connection, statusSQL, new BeanHandler<>(CreditEntity.class));
             return result.getStatus();

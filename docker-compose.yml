@@ -19,6 +19,6 @@ services:
       - POSTGRES_USER=app
   node-app:
     build: ./gate-simulator
-    image: node:latest
+    image: node:8.16.2-alpine
     ports:
       - '9999:9999'
