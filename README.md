@@ -6,7 +6,7 @@
 * командой *docker pull* скачать с DockerHub следующие образы:
 1. mysql:latest
 2. postgres:latest
-3. node:latest
+3. node:8.16.2-alpine
 #### Запуск ####
 1. Запустить Docker desktop;
 2. Склонировать проект и открыть его в IntelliJ IDEA;
